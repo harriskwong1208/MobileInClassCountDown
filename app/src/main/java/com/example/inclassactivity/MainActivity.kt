@@ -19,10 +19,11 @@ class MainActivity : AppCompatActivity() {
         TextView1 = findViewById(R.id.TextView1)
         button = findViewById<Button>(R.id.button)
 
-
-        val scope = CoroutineScope(Job() + Dispatchers.Default)
-        scope.launch {
-            countdownTimer()
+        button.setOnClickListener {
+            val scope = CoroutineScope(Job() + Dispatchers.Default)
+            scope.launch {
+                countdownTimer()
+            }
         }
     }
     suspend fun countdownTimer() {
