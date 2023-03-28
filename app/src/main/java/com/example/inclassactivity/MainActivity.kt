@@ -25,11 +25,15 @@ class MainActivity : AppCompatActivity() {
             countdownTimer()
         }
     }
-    suspend fun countdownTimer(){
-        repeat(100){
-            Log.d("Countdown",(100 -it).toString())
-            TextView1.text = this
+    suspend fun countdownTimer() {
+        repeat(100) {
+            (100 -it).toString().run{
+                Log.d("Countdown",this)
+                withContext(Dispatchers.Main) {
+                    TextView1.text = this@run
+                }
+            }
+            delay(1000)
         }
-        delay(1000)
     }
 }
